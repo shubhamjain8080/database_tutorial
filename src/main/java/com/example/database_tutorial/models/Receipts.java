@@ -28,13 +28,13 @@ public class Receipts {
     }
 
     public String getDate(SimpleDateFormat formatter){
-        String dateToBeParsed = (!receiptDate.equals("")) ? receiptDate : orderDate;
+        String dateToBeParsed = getDateAsString();
         Date date = Date.from(Instant.parse(dateToBeParsed));
         return formatter.format(date);
     }
 
-    public String getDateInWeekFormat(){
-        String dateToBeParsed = (!receiptDate.equals("")) ? receiptDate : orderDate;
+    public String getDateAsWeek(){
+        String dateToBeParsed = getDateAsString();
         Date date = Date.from(Instant.parse(dateToBeParsed));
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -42,7 +42,10 @@ public class Receipts {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM, yyyy");
 
         return (week + " week of " + getDate(simpleDateFormat));
+    }
 
+    private String getDateAsString() {
+        return (receiptDate!=null && !receiptDate.equals("")) ? receiptDate : orderDate;
     }
 
 }

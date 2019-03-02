@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/receipts")
@@ -39,7 +40,7 @@ public class ReceiptsController {
             for (Outlet outlet :
                     receipt.outlets) {
                 if (outlet.restId.equals(restId)){
-                    amountForOutlet(outletSaleByDate, receipt.getDateInWeekFormat(), outlet.grandtTotal);
+                    amountForOutlet(outletSaleByDate, receipt.getDateAsWeek(), outlet.grandtTotal);
                 }
             }
         }
