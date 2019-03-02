@@ -16,6 +16,8 @@ public class Receipts {
 
     public String receiptDate;
 
+    public String orderDate;
+
     public ArrayList<Outlet> outlets;
 
     public String get_id() {
@@ -26,12 +28,14 @@ public class Receipts {
     }
 
     public String getDate(SimpleDateFormat formatter){
-        Date date = Date.from(Instant.parse(receiptDate));
+        String dateToBeParsed = (!receiptDate.equals("")) ? receiptDate : orderDate;
+        Date date = Date.from(Instant.parse(dateToBeParsed));
         return formatter.format(date);
     }
 
     public String getDateInWeekFormat(){
-        Date date = Date.from(Instant.parse(receiptDate));
+        String dateToBeParsed = (!receiptDate.equals("")) ? receiptDate : orderDate;
+        Date date = Date.from(Instant.parse(dateToBeParsed));
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int week = calendar.get(Calendar.WEEK_OF_MONTH);
